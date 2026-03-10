@@ -1,0 +1,33 @@
+<div class="container"> 
+<h2 class="text-center mt-5">Track Your Delivery</h2>
+
+<div class="tracking-container">
+  <input [(ngModel)]="trackingId" placeholder="Enter Tracking ID" class="tracking-input">
+  <button (click)="onTrack()" class="btn btn-primary">Track</button>
+</div>
+
+<div *ngIf="delivery" class="tracking-result">
+  <h3>Delivery Details</h3>
+  <ul>
+    <li><strong>Sender:</strong> {{delivery.sender}}</li>
+    <li><strong>Recipient:</strong> {{delivery.recipient}}</li>
+    <li><strong>Weight:</strong> {{delivery.weight}}</li>
+    <li><strong>Content:</strong> {{delivery.content}}</li>
+    <li><strong>Address:</strong> {{delivery.address}}</li>
+    <li>
+      <strong>Status:</strong>
+      <span [ngClass]="delivery.status === 'Received' ? 'status-received' : 'status-transit'">
+        {{delivery.status}}
+      </span>
+    </li>
+    <li><strong>Tracking ID:</strong> {{delivery.trackingId}}</li>
+  </ul>
+</div>
+
+<div *ngIf="notFound" class="tracking-error">
+  <p>No delivery found with this Tracking ID ❌</p>
+</div>
+
+<a routerLink="/" class="btn btn-secondary w-20 mt-3">Back to Home</a>
+</div>
+
